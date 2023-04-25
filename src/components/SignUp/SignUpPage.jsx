@@ -1,0 +1,86 @@
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import "./sign_up.css";
+import { auth } from "../../firebase_init";
+
+function SignUpPage() {
+   const [email, setEmail] = useState("");
+   const [pw, setPw] = useState("");
+   const [pwc, setPwc] = useState("");
+   const [error, setError] = useState(null);
+   const navigate = useNavigate();
+
+   function signUp(e) {
+      e.preventDefault();
+      setError(null);
+
+      if (pw != pwc) {
+         setError("Password does not match");
+         return;
+      }
+
+      createUserWithEmailAndPassword(auth, email, pw)
+         .then((_) => navigate("/"))
+         .catch((error) => setError(error.message));
+   }
+
+   return (
+      <div className="container">
+         <div className="sign-data">
+            <h2>Create an account here</h2>
+
+            <form onSubmit={signUp} role="form" className="form-horizontal">
+               <div className="form-group"></div>
+               <div className="form-group">
+                  <label htmlFor="email">Email Address:</label>
+                  <input
+                     type="email"
+                     placeholder="Email Address"
+                     className="form-control"
+                     required
+                     id="email"
+                     onChange={(e) => setEmail(e.target.value)}
+                     value={email}
+                  />
+               </div>
+
+               <div className="row">
+                  <div className="form-group col-md-6">
+                     <label>Password</label>
+                     <input
+                        type="password"
+                        className="form-control"
+                        required
+                        placeholder="password"
+                        onChange={(e) => setPw(e.target.value)}
+                        value={pw}
+                     />
+                  </div>
+                  <div className="form-group col-md-6">
+                     <label>Confirm Password</label>
+                     <input
+                        type="password"
+                        className="form-control"
+                        required
+                        placeholder="Password"
+                        onChange={(e) => setPwc(e.target.value)}
+                        value={pwc}
+                     />
+                  </div>
+               </div>
+               {error != null && (
+                  <div className="alert alert-danger">{error}</div>
+               )}
+
+               <button type="submit" className="btn btn-primary mt-2">
+                  Sign Up
+               </button>
+               <NavLink to="/sign_in">Already have an account?</NavLink>
+            </form>
+         </div>
+      </div>
+   );
+}
+
+export default SignUpPage;

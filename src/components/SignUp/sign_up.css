@@ -1,0 +1,11 @@
+.sign-data {
+   background: white;
+   padding: 25px;
+   border-radius: 5px;
+   box-shadow: 1px 1px 5px #cccccc;
+   margin-top: 50px;
+}
+
+.sign-data .form-group {
+   margin: 5px 0;
+}
