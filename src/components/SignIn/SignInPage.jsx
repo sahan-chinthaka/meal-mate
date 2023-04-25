@@ -1,4 +1,10 @@
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 function SignInPage() {
+   const [email, setEmail] = useState("");
+   const [pw, setPw] = useState("");
+
    return (
       <div className="container">
          <h1>Sign in here</h1>
@@ -11,6 +17,8 @@ function SignInPage() {
                   id="email"
                   placeholder="Email Address"
                   className="form-control"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                />
             </div>
             <div className="form-group">
@@ -20,10 +28,18 @@ function SignInPage() {
                   id="pw"
                   placeholder="Password"
                   className="form-control"
+                  onChange={(e) => setPw(e.target.value)}
+                  value={pw}
                />
             </div>
 
-            <button className="btn btn-primary">Sign In</button>
+            <button type="submit" className="btn btn-primary">
+               Sign In
+            </button>
+            <p>
+               Don't have an account?
+               <NavLink to={"/sign_up"}>create account</NavLink>
+            </p>
          </form>
       </div>
    );
