@@ -76,7 +76,11 @@ function SignUpPage() {
                <button type="submit" className="btn btn-primary mt-2">
                   Sign Up
                </button>
-               <NavLink to="/sign_in">Already have an account?</NavLink>
+
+               <p>
+                  Already have an account?
+                  <NavLink to="/sign_in">sign in</NavLink>
+               </p>
             </form>
          </div>
       </div>
