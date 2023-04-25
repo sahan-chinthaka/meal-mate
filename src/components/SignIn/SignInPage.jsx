@@ -1,8 +1,9 @@
 function SignInPage() {
    return (
-      <div>
+      <div className="container">
          <h1>Sign in here</h1>
-         hello
+
+         <div>SCA</div>
       </div>
    );
 }

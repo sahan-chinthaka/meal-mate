@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
    return (
       <>
-         <NavBar />
+         <AuthProvider>
+            <NavBar />
 
-         <Outlet />
+            <Outlet />
+         </AuthProvider>
       </>
    );
 }
