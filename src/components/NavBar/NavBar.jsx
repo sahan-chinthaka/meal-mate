@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
 import profile_img from "../../assets/profile.png";
 import "./nav_bar.css";
+import mm_png from './mm_png.png';
 
 function NavBar() {
    return (
       <div className="nav-bar">
          <div className="logo-container">
-            <NavLink to="/">Meal Mate</NavLink>
+            <NavLink to="/"><img className="logo" src={mm_png} /></NavLink>
          </div>
          <nav className="nav-list">
             <ul>
