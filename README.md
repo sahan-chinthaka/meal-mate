@@ -1,5 +1,4 @@
 # meal-mate
 A food viewing and ordering website
 
-
-A new update
+Best place for you meal oder
