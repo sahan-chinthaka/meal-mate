@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import "./sign_up.css";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { auth } from "../../firebase_init";
+import "./sign_up.css";
 
 function SignUpPage() {
    const [name, setName] = useState("");
@@ -10,7 +10,7 @@ function SignUpPage() {
    const [pw, setPw] = useState("");
    const [pwc, setPwc] = useState("");
    const [error, setError] = useState(null);
-   const navigate = useNavigate();
+   const [type, setType] = useState(true);
 
    function signUp(e) {
       e.preventDefault();
@@ -23,7 +23,10 @@ function SignUpPage() {
 
       createUserWithEmailAndPassword(auth, email, pw)
          .then((cred) => {
-            updateProfile(cred.user, { displayName: name });
+            updateProfile(cred.user, {
+               displayName: name,
+               photoURL: type + "",
+            });
             window.location = "/";
          })
          .catch((error) => setError(error.message));
@@ -45,6 +48,38 @@ function SignUpPage() {
                      value={name}
                      placeholder="Your name"
                   />
+               </div>
+               <div className="row form-group m-3">
+                  <div className="form-check col-md-6">
+                     <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="flexRadioDefault1"
+                        checked={type}
+                        onChange={() => setType(true)}
+                     />
+                     <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault1"
+                     >
+                        I'm looking for food
+                     </label>
+                  </div>
+                  <div className="form-check col-md-6">
+                     <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="flexRadioDefault2"
+                        checked={!type}
+                        onChange={() => setType(false)}
+                     />
+                     <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault2"
+                     >
+                        I'm a shop owner
+                     </label>
+                  </div>
                </div>
                <div className="form-group">
                   <label htmlFor="email">Email Address</label>
@@ -87,7 +122,7 @@ function SignUpPage() {
                   <div className="alert alert-danger">{error}</div>
                )}
 
-               <button type="submit" className="btn btn-primary mt-2">
+               <button type="submit" className="btn btn-primary my-2">
                   Sign Up
                </button>
 
