@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import "./sign_up.css";
 import { auth } from "../../firebase_init";
 
 function SignUpPage() {
+   const [name, setName] = useState("");
    const [email, setEmail] = useState("");
    const [pw, setPw] = useState("");
    const [pwc, setPwc] = useState("");
@@ -21,7 +22,10 @@ function SignUpPage() {
       }
 
       createUserWithEmailAndPassword(auth, email, pw)
-         .then((_) => navigate("/"))
+         .then((cred) => {
+            updateProfile(cred.user, { displayName: name });
+            window.location = "/";
+         })
          .catch((error) => setError(error.message));
    }
 
@@ -31,9 +35,19 @@ function SignUpPage() {
             <h2>Create an account here</h2>
 
             <form onSubmit={signUp} role="form" className="form-horizontal">
-               <div className="form-group"></div>
                <div className="form-group">
-                  <label htmlFor="email">Email Address:</label>
+                  <label htmlFor="name">Your name</label>
+                  <input
+                     type="text"
+                     id="name"
+                     className="form-control"
+                     onChange={(e) => setName(e.target.value)}
+                     value={name}
+                     placeholder="Your name"
+                  />
+               </div>
+               <div className="form-group">
+                  <label htmlFor="email">Email Address</label>
                   <input
                      type="email"
                      placeholder="Email Address"

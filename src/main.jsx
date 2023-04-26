@@ -5,7 +5,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./components/Home/HomePage.jsx";
 import SignInPage from "./components/SignIn/SignInPage.jsx";
 import SignUpPage from "./components/SignUp/SignUpPage.jsx";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import ProfilePage from "./components/Profile/ProfilePage.jsx";
 
 const router = createBrowserRouter([
    {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
          {
             index: true,
             element: <HomePage />,
+         },
+         {
+            path: "profile",
+            element: <ProfilePage />,
          },
       ],
    },

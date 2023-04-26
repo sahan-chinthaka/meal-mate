@@ -30,7 +30,7 @@ function NavBar() {
             {auth != null ? (
                <>
                   <img className="profile-img" src={profile_img} alt="" />
-                  <span>Profile</span>
+                  <NavLink to="/profile">Profile</NavLink>
                </>
             ) : (
                <>
