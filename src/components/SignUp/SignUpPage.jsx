@@ -1,7 +1,14 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+   getFirestore,
+   doc,
+   setDoc,
+   collection,
+   addDoc,
+} from "firebase/firestore";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { auth } from "../../firebase_init";
+import { NavLink, useNavigate } from "react-router-dom";
+import { fs, auth } from "../../firebase_init";
 import "./sign_up.css";
 
 function SignUpPage() {
@@ -11,6 +18,7 @@ function SignUpPage() {
    const [pwc, setPwc] = useState("");
    const [error, setError] = useState(null);
    const [type, setType] = useState(true);
+   const navigate = useNavigate();
 
    function signUp(e) {
       e.preventDefault();
@@ -25,9 +33,14 @@ function SignUpPage() {
          .then((cred) => {
             updateProfile(cred.user, {
                displayName: name,
-               photoURL: type + "",
             });
-            window.location = "/";
+            let uid = cred.user.uid;
+            const user_doc = doc(fs, "users", uid);
+            setDoc(user_doc, {
+               type: type ? "user" : "owner",
+            }).then(() => {
+               navigate("/");
+            });
          })
          .catch((error) => setError(error.message));
    }
