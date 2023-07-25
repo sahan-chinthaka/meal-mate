@@ -4,13 +4,13 @@ import "./sign_up.css";
 import { useRef, useState } from "react";
 import Districts from "./districts.json";
 import Cities from "./cities.json";
-import { auth, fs } from "../../firebase";
+import { Auth, FS } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-	const [view, setView] = useState(2);
+	const [view, setView] = useState(0);
 
 	return (
 		<div className="container">
@@ -19,11 +19,11 @@ function SignUp() {
 				<>
 					<div className="type-sel" onClick={() => setView(1)}>
 						<img width="100" src={FoodLogo} />
-						<span>I'm looking for food</span>
+						<span>Im looking for food</span>
 					</div>
 					<div className="type-sel" onClick={() => setView(2)}>
 						<img width="100" src={CashierLogo} />
-						<span>I'm selling food</span>
+						<span>Im selling food</span>
 					</div>
 				</>
 			)}
@@ -55,7 +55,7 @@ function UserSignUp() {
 		if (pw !== pwc) return setErr("Passwords are not same");
 		setDis(true);
 
-		createUserWithEmailAndPassword(auth, email, pw)
+		createUserWithEmailAndPassword(Auth, email, pw)
 			.then((cred) => {
 				const user = cred.user;
 				updateProfile(user, {
@@ -67,7 +67,7 @@ function UserSignUp() {
 				const disN = d["name_en"] + " " + d["name_si"];
 				const cityN = c["b"] + " " + c["c"];
 
-				setDoc(doc(fs, "users", user.uid), {
+				setDoc(doc(FS, "users", user.uid), {
 					email,
 					name,
 					district: disN,
@@ -175,11 +175,11 @@ function OwnerSignUp() {
 		const cityN = c["b"] + " " + c["c"];
 		setDis(true);
 
-		createUserWithEmailAndPassword(auth, email, pw)
+		createUserWithEmailAndPassword(Auth, email, pw)
 			.then((cred) => {
 				const user = cred.user;
 
-				setDoc(doc(fs, "shops", user.uid), {
+				setDoc(doc(FS, "shops", user.uid), {
 					email,
 					shopName,
 					district: disN,
