@@ -1,5 +1,5 @@
-function Profile() {
+function UserProfile() {
 	return "Profile";
 }
 
-export default Profile;
+export default UserProfile;

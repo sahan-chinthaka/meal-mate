@@ -75,7 +75,7 @@ function UserSignUp() {
 					lati: c["d"],
 					long: c["e"],
 				})
-					.then(() => navigate("/"))
+					.then(() => (window.location.href = "/"))
 					.catch((err) => setErr(err.code));
 			})
 			.catch((err) => {
@@ -189,7 +189,7 @@ function OwnerSignUp() {
 					lati: c["d"],
 					long: c["e"],
 				})
-					.then(() => navigate("/"))
+					.then(() => (window.location.href = "/"))
 					.catch((err) => setErr(err.code));
 			})
 			.catch((err) => {

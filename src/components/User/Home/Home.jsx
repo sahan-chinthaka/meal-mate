@@ -1,13 +1,13 @@
 import { useAuth } from "../../../Context/AuthContext";
 
-function Home() {
+function UserHome() {
 	const auth = useAuth();
 	return (
 		<div>
-			<pre>{JSON.stringify(auth)}</pre>
+			<pre>Home</pre>
          <a href="/sign_in">Sign In</a>
 		</div>
 	);
 }
 
-export default Home;
+export default UserHome;

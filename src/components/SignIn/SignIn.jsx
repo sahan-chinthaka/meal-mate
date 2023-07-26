@@ -19,7 +19,7 @@ function SignIn() {
 
 		setDis(true);
 		signInWithEmailAndPassword(Auth, email, pw)
-			.then((cred) => navigate("/"))
+			.then((cred) => (window.location.href = "/"))
 			.catch((err) => {
 				if (err.code == "auth/user-not-found") return setErr("User not found");
 				if (err.code == "auth/wrong-password") return setErr("Wrong password");
