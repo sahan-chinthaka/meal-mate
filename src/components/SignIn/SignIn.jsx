@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useRef } from "react";
 import { Auth } from "../../firebase";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function SignIn() {
 	const form = useRef(null);
@@ -44,6 +44,7 @@ function SignIn() {
 				<button disabled={dis} type="submit" className="btn btn-primary">
 					Sign In
 				</button>
+				<NavLink to="/sign_up">Create an account</NavLink>
 			</form>
 		</div>
 	);

@@ -24,9 +24,6 @@ function SidePanel() {
 						<NavLink to="/">Home</NavLink>
 					</li>
 					<li>
-						<NavLink to="/shops">Shops</NavLink>
-					</li>
-					<li>
 						<NavLink to="/profile">Profile</NavLink>
 					</li>
 				</ul>

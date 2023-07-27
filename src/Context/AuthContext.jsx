@@ -15,11 +15,15 @@ export function AuthProvider({ children }) {
 	useEffect(() => {
 		return onAuthStateChanged(Auth, (user) => {
 			if (user == null) {
-				setData({ user: null, type: null });
+				setData({ user: null, type: null, data: null });
 			} else {
-				const d = doc(FS, "users", user.uid);
-				getDoc(d).then((snap) => {
-					setData({ type: snap.data() ? "user" : "owner", user });
+				const d1 = doc(FS, "users", user.uid);
+				const d2 = doc(FS, "shops", user.uid);
+				getDoc(d1).then((snap) => {
+					if (snap.data()) setData({ type: "user", user, data: snap.data() });
+				});
+				getDoc(d2).then((snap) => {
+					if (snap.data()) setData({ type: "owner", user, data: snap.data() });
 				});
 			}
 		});
