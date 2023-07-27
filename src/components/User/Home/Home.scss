@@ -1,0 +1,26 @@
+.shop-holder {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.shop-view {
+	font-family: Arial;
+	width: fit-content;
+	margin: 5px;
+	margin-bottom: 15px;
+	box-shadow: 1px 1px 5px rgb(150, 150, 150);
+	cursor: pointer;
+	transition: 0.2s;
+	overflow: hidden;
+	border-radius: 10px;
+
+	&:hover {
+		box-shadow: 1px 1px 5px rgb(1, 1, 1);
+	}
+
+	.title {
+		padding: 10px;
+		background-color: lightgray;
+	}
+}

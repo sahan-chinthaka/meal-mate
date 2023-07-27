@@ -1,17 +1,45 @@
 .side-panel {
 	overflow-x: hidden;
-   h2 {
-      text-align: center;
-   }
+	z-index: 2;
+
+	button {
+		display: none;
+	}
+
+	h2 {
+		text-align: center;
+	}
 	img {
-		width: 100px;
-      margin: auto;
-      display: block;
+		width: 80px;
+		margin: auto;
+		display: block;
 	}
 
 	ul {
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
+
+		a {
+			text-decoration: none;
+			color: black;
+			display: inline-block;
+			padding: 10px;
+			width: 100%;
+			margin-left: 5px;
+			margin-bottom: 5px;
+			border-radius: 10px 0px 0px 10px;
+		}
+
+		a.active {
+			background: white;
+		}
+	}
+}
+
+@media all and (max-width: 600px), (max-height: 360px) {
+	.side-panel ul li a {
+		border-radius: 0;
+      margin-left: 0;
 	}
 }

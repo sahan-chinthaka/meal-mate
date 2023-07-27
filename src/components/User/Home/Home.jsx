@@ -3,6 +3,7 @@ import { useAuth } from "../../../Context/AuthContext";
 import { and, collection, getDocs, limit, or, orderBy, query, where } from "firebase/firestore";
 import { FS, Storage } from "../../../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
+import "./Home.scss";
 
 function UserHome() {
 	const auth = useAuth();
@@ -10,10 +11,24 @@ function UserHome() {
 	const [search, setSearch] = useState(null);
 
 	useEffect(() => {
+		let found = 0;
 		const c = collection(FS, "shops");
-		const q = query(c, where("district", "==", auth.data.district));
+		const q = query(c, where("city", "==", auth.data.city), limit(10));
 		getDocs(q).then((snap) => {
 			setNearby(snap.docs.map((i) => ({ ...i.data(), id: i.id })));
+			found += snap.docs.length;
+
+			const q2 = query(c, where("district", "==", auth.data.district), limit(10 - found));
+			getDocs(q2).then((snap) => {
+				found += snap.docs.length;
+				setNearby((d) =>
+					d.concat(snap.docs.filter((i) => !d.find((p) => p.id == i.id)).map((i) => ({ ...i.data(), id: i.id })))
+				);
+				const q3 = query(c, where("district", "!=", auth.data.district), limit(10 - found));
+				getDocs(q3).then((snap) => {
+					setNearby((d) => d.concat(snap.docs.map((i) => ({ ...i.data(), id: i.id }))));
+				});
+			});
 		});
 	}, []);
 
@@ -48,19 +63,21 @@ function UserHome() {
 
 	return (
 		<div className="container">
-			<div className="p-2">
+			<div>
 				<input type="text" placeholder="Search here" className="form-control" name="" id="" onKeyUp={keyUp} />
 			</div>
 			{search != null && (
 				<div>
+					<br />
 					<h2>Search Results</h2>
 
 					{search.length == 0 ? "No results" : search.map((i) => <ShopViewCard key={i.id} data={i} />)}
 				</div>
 			)}
 			<div>
-				<h2>Nearby shops</h2>
-				<div>
+				<div className="p-1"></div>
+				<h2>Suggested shops</h2>
+				<div className="shop-holder pt-2">
 					{nearby.map((i) => (
 						<ShopViewCard key={i.id} data={i} />
 					))}
@@ -71,15 +88,15 @@ function UserHome() {
 }
 
 function ShopViewCard({ data }) {
-	const [img, setImg] = useState(null);
+	const [img, setImg] = useState("/loading.gif");
 	useEffect(() => {
 		const r = ref(Storage, "shop/" + data.id);
 		getDownloadURL(r).then(setImg);
 	}, []);
 
 	return (
-		<div>
-			<h3>{data.shopName}</h3>
+		<div className="shop-view">
+			<div className="title">{data.shopName}</div>
 			<img width={200} src={img} alt="" />
 		</div>
 	);
