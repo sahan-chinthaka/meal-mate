@@ -1,0 +1,32 @@
+.content {
+	max-width: 350px;
+   margin: auto;
+   margin-top: 20px;
+   padding: 20px;
+   box-shadow: 1px 1px 5px lightgray;
+   border-radius: 20px;
+   border: 1px solid #e5e5e5;
+
+   h3 {
+      text-align: center;
+   }
+
+   img {
+      width: 100px;
+      margin: auto;
+      display: block;
+   }
+
+   .form-group {
+      margin-bottom: 10px;
+   }
+
+   .btn {
+      margin: auto;
+      display: block;
+   }
+
+   a {
+      text-decoration: none;
+   }
+}

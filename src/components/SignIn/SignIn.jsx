@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRef } from "react";
 import { Auth } from "../../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
+import React, { PureComponent } from "react";
+import "./sign_in.scss";
 
 function SignIn() {
 	const form = useRef(null);
@@ -31,21 +33,28 @@ function SignIn() {
 	}
 	return (
 		<div className="container">
-			<form ref={form} onSubmit={submit}>
-				<div className="form-group">
-					<label htmlFor="email">Email Address</label>
-					<input type="email" name="email" id="email" required placeholder="Email" className="form-control" />
-				</div>
-				<div className="form-group">
-					<label htmlFor="pw">Password</label>
-					<input type="password" name="pw" id="pw" required className="form-control" placeholder="Password" />
-				</div>
-				{err != null && <div className="alert alert-danger">{err}</div>}
-				<button disabled={dis} type="submit" className="btn btn-primary">
-					Sign In
-				</button>
-				<NavLink to="/sign_up">Create an account</NavLink>
-			</form>
+			<div className="content">
+            <h3>Sign in to Meal Mate</h3>
+            <img src="/mm_logo.png" alt="" />
+				<form ref={form} onSubmit={submit}>
+					<div className="form-group">
+						<label htmlFor="email">Email Address</label>
+						<input type="email" name="email" id="email" required placeholder="Email" className="form-control" />
+					</div>
+					<div className="form-group">
+						<label htmlFor="pw">Password</label>
+						<input type="password" name="pw" id="pw" required className="form-control" placeholder="Password" />
+					</div>
+					{err != null && <div className="alert alert-danger">{err}</div>}
+					<div className="form-group">
+						<button disabled={dis} type="submit" className="btn btn-primary">
+							Sign In
+						</button>
+					</div>
+					Don't have an account ? &nbsp;
+					<NavLink to="/sign_up">Create an account</NavLink>
+				</form>
+			</div>
 		</div>
 	);
 }
