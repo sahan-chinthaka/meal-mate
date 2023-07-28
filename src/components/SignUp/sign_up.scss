@@ -1,0 +1,15 @@
+.type-sel {
+	padding: 10px;
+	margin: 10px;
+	display: flex;
+	box-shadow: 1px 1px 4px rgb(170, 170, 170);
+	cursor: pointer;
+	transition: 0.3s;
+	border-radius: 10px;
+	align-items: center;
+	flex-direction: column;
+}
+
+.type-sel:hover {
+	transform: scale(1.02);
+}

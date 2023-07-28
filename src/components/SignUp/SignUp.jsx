@@ -1,34 +1,37 @@
 import FoodLogo from "./food.jpg";
 import CashierLogo from "./cashier.jpg";
-import "./sign_up.css";
+import "./sign_up.scss";
 import { useRef, useState } from "react";
 import Districts from "./districts.json";
 import Cities from "./cities.json";
 import { Auth, FS } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function SignUp() {
 	const [view, setView] = useState(0);
 
 	return (
 		<div className="container">
-			<h1>Create an account on Meal Mate</h1>
-			{view === 0 && (
-				<>
-					<div className="type-sel" onClick={() => setView(1)}>
-						<img width="100" src={FoodLogo} />
-						<span>Im looking for food</span>
-					</div>
-					<div className="type-sel" onClick={() => setView(2)}>
-						<img width="100" src={CashierLogo} />
-						<span>Im selling food</span>
-					</div>
-				</>
-			)}
-			{view === 1 && <UserSignUp />}
-			{view === 2 && <OwnerSignUp />}
+			<div className="sign-holder">
+				<h3>Create an Account</h3>
+				<img src="/mm_logo.png" alt="" />
+				{view === 0 && (
+					<>
+						<div className="type-sel" onClick={() => setView(1)}>
+							<img width="100" src={FoodLogo} />
+							<span>I'm looking for food</span>
+						</div>
+						<div className="type-sel" onClick={() => setView(2)}>
+							<img width="100" src={CashierLogo} />
+							<span>I'm selling food</span>
+						</div>
+					</>
+				)}
+				{view === 1 && <UserSignUp />}
+				{view === 2 && <OwnerSignUp />}
+			</div>
 		</div>
 	);
 }
@@ -126,7 +129,7 @@ function UserSignUp() {
 						))}
 					</select>
 				</div>
-				<div className="row">
+				<div className="form-group row">
 					<div className="form-group col">
 						<label htmlFor="pw">Password</label>
 						<input required name="pw" type="password" className="form-control" id="pw" placeholder="Password" />
@@ -137,9 +140,13 @@ function UserSignUp() {
 					</div>
 				</div>
 				{err !== null && <div className="alert alert-danger">{err}</div>}
-				<button disabled={dis} type="submit" className="btn btn-primary">
-					Sign Up
-				</button>
+				<div className="form-group">
+					<button disabled={dis} type="submit" className="btn btn-primary">
+						Sign Up
+					</button>
+				</div>
+				Already have an account.&nbsp;
+				<NavLink to="/sign_in">Sign in here</NavLink>
 			</form>
 		</div>
 	);
@@ -259,9 +266,13 @@ function OwnerSignUp() {
 					</div>
 				</div>
 				{err !== null && <div className="alert alert-danger">{err}</div>}
-				<button disabled={dis} type="submit" className="btn btn-primary">
-					Sign Up
-				</button>
+				<div className="form-group">
+					<button disabled={dis} type="submit" className="btn btn-primary">
+						Sign Up
+					</button>
+				</div>
+				Already have an account.&nbsp;
+				<NavLink to="/sign_in">Sign in here</NavLink>
 			</form>
 		</div>
 	);

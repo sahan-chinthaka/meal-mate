@@ -13,7 +13,9 @@ function Owner() {
 		<div>
 			<NavBar />
 
-			<Outlet />
+			<div className="container" style={{ background: "white", padding: "10px" }}>
+				<Outlet />
+			</div>
 		</div>
 	);
 }

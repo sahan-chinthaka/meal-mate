@@ -33,7 +33,7 @@ function SignIn() {
 	}
 	return (
 		<div className="container">
-			<div className="content">
+			<div className="sign-holder">
             <h3>Sign in to Meal Mate</h3>
             <img src="/mm_logo.png" alt="" />
 				<form ref={form} onSubmit={submit}>
