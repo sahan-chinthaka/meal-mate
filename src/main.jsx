@@ -11,6 +11,7 @@ import SignIn from "./components/SignIn/SignIn";
 import Owner from "./components/Owner/Owner";
 import Overview from "./components/Owner/Overview/Overview";
 import Foods from "./components/Owner/Foods/Foods";
+import Shop from "./components/User/Shop/Shop";
 
 const router = createBrowserRouter([
 	{
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 			{
 				path: "profile",
 				element: <UserProfile />,
+			},
+			{
+				path: "shop/:shopID",
+				element: <Shop />,
 			},
 		],
 	},
