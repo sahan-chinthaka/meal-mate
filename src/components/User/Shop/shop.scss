@@ -1,0 +1,62 @@
+.shop-container {
+	.shop-header {
+		height: 250px;
+		margin-bottom: 10px;
+		color: white;
+		border-radius: 10px;
+		overflow: hidden;
+		background-position: center;
+      background-size: cover;
+
+		.grad {
+			background-image: linear-gradient(to bottom, black, transparent);
+			height: 100%;
+         padding: 20px;
+		}
+	}
+
+	.tab-holder {
+		display: flex;
+
+		div {
+			flex: 1;
+			padding: 10px;
+			text-align: center;
+			cursor: pointer;
+
+			&:hover {
+				background: rgba(240, 240, 240);
+			}
+		}
+
+		div.tab-selected {
+			border-bottom: 1px solid black;
+			background: rgba(220, 220, 220);
+		}
+	}
+
+	.food-items {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.food-item-view {
+		width: 250px;
+		margin: 10px;
+		box-sizing: content-box;
+		border-radius: 10px;
+		overflow: hidden;
+		background: #ffc107;
+
+		.food-image {
+			img {
+				width: 250px;
+				margin: 0;
+			}
+		}
+
+		.food-details {
+			padding: 10px;
+		}
+	}
+}
