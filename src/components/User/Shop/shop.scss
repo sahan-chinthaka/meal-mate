@@ -6,12 +6,12 @@
 		border-radius: 10px;
 		overflow: hidden;
 		background-position: center;
-      background-size: cover;
+		background-size: cover;
 
 		.grad {
 			background-image: linear-gradient(to bottom, black, transparent);
 			height: 100%;
-         padding: 20px;
+			padding: 20px;
 		}
 	}
 
@@ -38,6 +38,7 @@
 	.food-items {
 		display: flex;
 		flex-wrap: wrap;
+      justify-content: center;
 	}
 
 	.food-item-view {
@@ -50,7 +51,7 @@
 
 		.food-image {
 			img {
-				width: 250px;
+				width: 100%;
 				margin: 0;
 			}
 		}
