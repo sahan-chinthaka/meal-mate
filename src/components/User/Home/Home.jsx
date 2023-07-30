@@ -4,6 +4,7 @@ import { and, collection, getDocs, limit, or, orderBy, query, where } from "fire
 import { FS, Storage } from "../../../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
 import "./Home.scss";
+import { NavLink } from "react-router-dom";
 
 function UserHome() {
 	const auth = useAuth();
@@ -96,7 +97,9 @@ function ShopViewCard({ data }) {
 
 	return (
 		<div className="shop-view">
-			<div className="title">{data.shopName}</div>
+			<div className="title">
+				<NavLink to={"shop/" + data.id}>{data.shopName}</NavLink>
+			</div>
 			<img width={200} src={img} alt="" />
 		</div>
 	);
