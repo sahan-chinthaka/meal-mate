@@ -1,17 +1,17 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignUp from "./components/SignUp/SignUp";
 import "bootstrap/dist/css/bootstrap.min.css";
-import User from "./components/User/User";
-import UserHome from "./components/User/Home/Home";
 import UserProfile from "./components/User/Profile/Profile";
 import { AuthProvider } from "./Context/AuthContext";
 import SignIn from "./components/SignIn/SignIn";
+import UserHome from "./components/User/Home/Home";
+import Shop from "./components/User/Shop/Shop";
+import User from "./components/User/User";
 import Owner from "./components/Owner/Owner";
 import Overview from "./components/Owner/Overview/Overview";
 import Foods from "./components/Owner/Foods/Foods";
-import Shop from "./components/User/Shop/Shop";
 
 const router = createBrowserRouter([
 	{

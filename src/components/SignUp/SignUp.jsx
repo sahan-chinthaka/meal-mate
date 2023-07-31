@@ -1,9 +1,8 @@
 import FoodLogo from "./food.jpg";
 import CashierLogo from "./cashier.jpg";
 import "./sign_up.scss";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Districts from "./districts.json";
-import Cities from "./cities.json";
 import { Auth, FS } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -11,6 +10,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 function SignUp() {
 	const [view, setView] = useState(0);
+	const [Cities, setCities] = useState([]);
+
+	useEffect(() => {
+		import("./cities.json").then((p) => setCities(p.default));
+	}, []);
 
 	return (
 		<div className="container">
@@ -29,14 +33,14 @@ function SignUp() {
 						</div>
 					</>
 				)}
-				{view === 1 && <UserSignUp />}
-				{view === 2 && <OwnerSignUp />}
+				{view === 1 && <UserSignUp Cities={Cities} />}
+				{view === 2 && <OwnerSignUp Cities={Cities} />}
 			</div>
 		</div>
 	);
 }
 
-function UserSignUp() {
+function UserSignUp({ Cities }) {
 	const [dId, setDID] = useState(1);
 	const [err, setErr] = useState(null);
 	const [dis, setDis] = useState(false);
@@ -152,7 +156,7 @@ function UserSignUp() {
 	);
 }
 
-function OwnerSignUp() {
+function OwnerSignUp({ Cities }) {
 	const [dId, setDID] = useState(1);
 	const [err, setErr] = useState(null);
 	const [dis, setDis] = useState(false);
