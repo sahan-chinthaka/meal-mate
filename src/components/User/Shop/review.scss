@@ -1,0 +1,23 @@
+.reviews-tab {
+	.my-review {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.star-holder {
+		margin: 15px 10px;
+		width: 150px;
+		text-align: center;
+
+      svg {
+         cursor: pointer;
+      }
+	}
+
+	input {
+		min-width: 300px;
+		flex: 1;
+	}
+}
