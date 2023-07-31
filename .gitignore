@@ -16,6 +16,7 @@ dist
 
 # Firebase
 .firebaserc
+.firebase
 firebase.json
 
 # Editor directories and files

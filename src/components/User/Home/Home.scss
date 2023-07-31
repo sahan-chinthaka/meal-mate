@@ -4,23 +4,34 @@
 	justify-content: center;
 }
 
-.shop-view {
-	font-family: Arial;
-	width: fit-content;
-	margin: 5px;
-	margin-bottom: 15px;
-	box-shadow: 1px 1px 5px rgb(150, 150, 150);
-	cursor: pointer;
-	transition: 0.2s;
-	overflow: hidden;
-	border-radius: 10px;
+.shop-link {
+	display: block;
+   margin: 10px;
+}
 
-	&:hover {
-		box-shadow: 1px 1px 5px rgb(1, 1, 1);
-	}
+.shop-view {
+	width: 200px;
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+	color: white;
+	border-radius: 10px;
+	overflow: hidden;
 
 	.title {
+		text-align: center;
+		background-image: linear-gradient(to bottom, black, transparent);
+		height: 100%;
 		padding: 10px;
-		background-color: lightgray;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.shop-link {
+		width: 100%;
+
+		.shop-view {
+			width: 100%;
+		}
 	}
 }

@@ -96,12 +96,15 @@ function ShopViewCard({ data }) {
 	}, []);
 
 	return (
-		<div className="shop-view">
-			<div className="title">
-				<NavLink to={"shop/" + data.id}>{data.shopName}</NavLink>
+		<NavLink className="shop-link" style={{ textDecoration: "none" }} to={"shop/" + data.id}>
+			<div className="shop-view" style={{ backgroundImage: `url("${img}")` }}>
+				<div className="title">
+					<h3>{data.shopName}</h3>
+               <hr />
+               <p>{data.city}</p>
+				</div>
 			</div>
-			<img width={200} src={img} alt="" />
-		</div>
+		</NavLink>
 	);
 }
 
