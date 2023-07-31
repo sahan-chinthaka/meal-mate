@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { FS, Storage } from "../../../firebase";
 import AboutTab from "./AboutTab";
 import "./shop.scss";
+import Reviews from "./Reviews";
 
 function Shop() {
 	const { shopID } = useParams();
@@ -55,6 +56,7 @@ function Shop() {
 				</div>
 			</div>
 			{selected == 0 && <FoodView shopID={shopID} foodList={foodList} />}
+			{selected == 1 && <Reviews shopID={shopID} />}
 			{selected == 2 && <AboutTab data={data} />}
 		</div>
 	);
