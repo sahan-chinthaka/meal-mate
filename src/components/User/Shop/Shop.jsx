@@ -3,6 +3,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FS, Storage } from "../../../firebase";
+import AboutTab from "./AboutTab";
 import "./shop.scss";
 
 function Shop() {
@@ -49,8 +50,12 @@ function Shop() {
 				<div onClick={() => setSelected(1)} className={selected == 1 ? "tab-selected" : ""}>
 					Reviews
 				</div>
+				<div onClick={() => setSelected(2)} className={selected == 2 ? "tab-selected" : ""}>
+					About
+				</div>
 			</div>
 			{selected == 0 && <FoodView shopID={shopID} foodList={foodList} />}
+			{selected == 2 && <AboutTab data={data} />}
 		</div>
 	);
 }
