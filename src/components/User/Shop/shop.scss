@@ -6,12 +6,12 @@
 		border-radius: 10px;
 		overflow: hidden;
 		background-position: center;
-      background-size: cover;
+		background-size: cover;
 
 		.grad {
 			background-image: linear-gradient(to bottom, black, transparent);
 			height: 100%;
-         padding: 20px;
+			padding: 20px;
 		}
 	}
 
@@ -38,20 +38,26 @@
 	.food-items {
 		display: flex;
 		flex-wrap: wrap;
+      justify-content: center;
 	}
 
 	.food-item-view {
 		width: 250px;
 		margin: 10px;
 		box-sizing: content-box;
-		border-radius: 10px;
 		overflow: hidden;
+		border-radius: 10px;
 		background: #ffc107;
 
 		.food-image {
-			img {
-				width: 250px;
-				margin: 0;
+			background-position: center;
+			background-size: cover;
+
+			.grad {
+				height: 150px;
+				padding: 10px;
+				color: white;
+				background: linear-gradient(to bottom, black, transparent);
 			}
 		}
 
