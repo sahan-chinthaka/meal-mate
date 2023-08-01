@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../Context/AuthContext";
 import { and, collection, getDocs, limit, or, orderBy, query, where } from "firebase/firestore";
 import { FS, Storage } from "../../../firebase";
@@ -10,6 +10,9 @@ function UserHome() {
 	const auth = useAuth();
 	const [nearby, setNearby] = useState([]);
 	const [search, setSearch] = useState(null);
+	const input = useRef(null);
+	const [dis, setDis] = useState(false);
+	const lastSearch = useRef("");
 
 	useEffect(() => {
 		let found = 0;
@@ -38,39 +41,50 @@ function UserHome() {
 			e.target.value = "";
 			setSearch(null);
 		} else if (e.keyCode == 13) {
-			const text = e.target.value.trim();
-			if (text.length < 2) return;
-
-			const c = collection(FS, "shops");
-			const q = query(
-				c,
-				or(
-					and(where("shopName", ">=", text), where("shopName", "<=", text + "\uf8ff")),
-					and(
-						where("shopName", ">=", text.charAt(0).toUpperCase() + text.slice(1)),
-						where("shopName", "<=", text.charAt(0).toUpperCase() + text.slice(1) + "\uf8ff")
-					),
-					and(where("shopName", ">=", text.toLowerCase()), where("shopName", "<=", text.toLowerCase() + "\uf8ff"))
-				),
-				orderBy("shopName"),
-				limit(10)
-			);
-
-			getDocs(q).then((snap) => {
-				setSearch(snap.docs.map((i) => ({ ...i.data(), id: i.id })));
-			});
+			searchEvent(e.target.value);
 		}
+	}
+
+	function searchEvent(txt) {
+		const text = txt.trim();
+		if (text.length < 1) return;
+		setDis(true);
+		lastSearch.current = text;
+
+		const c = collection(FS, "shops");
+		const q = query(
+			c,
+			or(
+				and(where("shopName", ">=", text), where("shopName", "<=", text + "\uf8ff")),
+				and(
+					where("shopName", ">=", text.charAt(0).toUpperCase() + text.slice(1)),
+					where("shopName", "<=", text.charAt(0).toUpperCase() + text.slice(1) + "\uf8ff")
+				),
+				and(where("shopName", ">=", text.toLowerCase()), where("shopName", "<=", text.toLowerCase() + "\uf8ff"))
+			),
+			orderBy("shopName"),
+			limit(10)
+		);
+
+		getDocs(q)
+			.then((snap) => {
+				setSearch(snap.docs.map((i) => ({ ...i.data(), id: i.id })));
+			})
+			.finally(() => setDis(false));
 	}
 
 	return (
 		<div className="container">
-			<div>
-				<input type="text" placeholder="Search here" className="form-control" name="" id="" onKeyUp={keyUp} />
+			<div style={{ display: "flex" }}>
+				<input ref={input} type="text" placeholder="Search here" className="form-control" name="" id="" onKeyUp={keyUp} />
+				<button disabled={dis} className="btn btn-warning mx-1" onClick={() => searchEvent(input.current.value)}>
+					Search
+				</button>
 			</div>
 			{search != null && (
 				<div>
 					<br />
-					<h2>Search Results</h2>
+					<h2>Search results for "{lastSearch.current}"</h2>
 
 					{search.length == 0 ? "No results" : search.map((i) => <ShopViewCard key={i.id} data={i} />)}
 				</div>
@@ -100,8 +114,8 @@ function ShopViewCard({ data }) {
 			<div className="shop-view" style={{ backgroundImage: `url("${img}")` }}>
 				<div className="title">
 					<h3>{data.shopName}</h3>
-               <hr />
-               <p>{data.city}</p>
+					<hr />
+					<p>{data.city}</p>
 				</div>
 			</div>
 		</NavLink>
