@@ -80,12 +80,14 @@ function FoodItemView({ data, shopID }) {
 	}, []);
 	return (
 		<div className="food-item-view">
-			<div className="food-image">
-				<img src={url} alt="" />
+			<div className="food-image" style={{ backgroundImage: `url("${url}")` }}>
+				<div className="grad">
+					<h3 align="center">{data.name}</h3>
+               <p>{data.description}</p>
+				</div>
 			</div>
 			<div className="food-details">
-				<h3>{data.name}</h3>
-				<p>{data.description}</p>
+				<p>Rs. {data.price} /=</p>
 			</div>
 		</div>
 	);

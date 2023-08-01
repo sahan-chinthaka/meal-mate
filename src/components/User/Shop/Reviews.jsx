@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import "./review.scss";
-import { collection, doc, getCountFromServer, getDoc, setDoc } from "firebase/firestore";
+import {
+	collection,
+	doc,
+	getCountFromServer,
+	getDoc,
+	setDoc,
+	serverTimestamp,
+	getDocs,
+	query,
+	limit,
+	orderBy,
+} from "firebase/firestore";
 import { FS } from "../../../firebase";
 import { useAuth } from "../../../Context/AuthContext";
 
@@ -11,6 +22,7 @@ function Reviews({ shopID }) {
 	const [reviewState, setReviewState] = useState(0); // 0: Loading, 1: No review, 2: Has review
 	const [dis, setDis] = useState(false);
 	const [reviewCount, setReviewCount] = useState(0);
+	const [reviews, setReviews] = useState([]);
 	const auth = useAuth();
 
 	useEffect(() => {
@@ -26,6 +38,11 @@ function Reviews({ shopID }) {
 
 		const c = collection(FS, "shops", shopID, "reviews");
 		getCountFromServer(c).then((snap) => setReviewCount(snap.data().count));
+
+		const q = query(c, orderBy("time", "desc"), limit(10));
+		getDocs(c).then((snap) => {
+			setReviews(snap.docs.map((i) => ({ ...i.data(), id: i.id })));
+		});
 	}, []);
 
 	function writeReview() {
@@ -35,6 +52,7 @@ function Reviews({ shopID }) {
 		setDoc(c, {
 			review: myReview,
 			rate: myReviewCount,
+			time: serverTimestamp(),
 		}).finally(() => {
 			setDis(false);
 			setReviewState(2);
@@ -83,6 +101,31 @@ function Reviews({ shopID }) {
 					Update Review
 				</button>
 			</div>
+			<div className="reviews">
+				{reviews.map((i) => (
+					<Review key={i.id} data={i} />
+				))}
+			</div>
+		</div>
+	);
+}
+
+function Review({ data }) {
+	const date = new Date(data.time.seconds * 1000);
+
+	return (
+		<div>
+			<div>
+				<span>
+					{data.rate >= 1 ? <AiFillStar size="15" fill="green" /> : <AiOutlineStar color="green" size="15" />}
+					{data.rate >= 2 ? <AiFillStar size="15" fill="green" /> : <AiOutlineStar color="green" size="15" />}
+					{data.rate >= 3 ? <AiFillStar size="15" fill="green" /> : <AiOutlineStar color="green" size="15" />}
+					{data.rate >= 4 ? <AiFillStar size="15" fill="green" /> : <AiOutlineStar color="green" size="15" />}
+					{data.rate >= 5 ? <AiFillStar size="15" fill="green" /> : <AiOutlineStar color="green" size="15" />}
+				</span>
+				<span style={{ fontSize: "13px", marginLeft: "5px" }}>{date.toDateString()}</span>
+			</div>
+			<p>{data.review}</p>
 		</div>
 	);
 }

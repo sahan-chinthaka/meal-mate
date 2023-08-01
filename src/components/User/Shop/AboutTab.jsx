@@ -20,6 +20,7 @@ function AboutTab({ data }) {
 				<div className="col-3">Address</div>
 				<div className="col-9">{data.shopAddress}</div>
 			</div>
+         <hr />
 			<div className="row">
 				<div className="col-3">Contact</div>
 				<div className="col-9">{data.shopContact}</div>
