@@ -1,19 +1,19 @@
-import FoodLogo from "./food.jpg";
-import CashierLogo from "./cashier.jpg";
-import "./sign_up.scss";
-import { useEffect, useRef, useState } from "react";
-import Districts from "./districts.json";
-import { Auth, FS } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Auth, FS } from "../../firebase";
+import CashierLogo from "./assets/cashier.jpg";
+import Districts from "./assets/districts.json";
+import FoodLogo from "./assets/food.jpg";
+import "./sign_up.scss";
 
 function SignUp() {
 	const [view, setView] = useState(0);
 	const [Cities, setCities] = useState([]);
 
 	useEffect(() => {
-		import("./cities.json").then((p) => setCities(p.default));
+		import("./assets/cities.json").then((p) => setCities(p.default));
 	}, []);
 
 	return (
