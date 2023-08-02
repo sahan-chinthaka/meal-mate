@@ -2,7 +2,8 @@ import { Navigate, Outlet } from "react-router-dom";
 import SidePanel from "./SidePanel/SidePanel";
 import "./User.scss";
 import { useAuth } from "../../Context/AuthContext";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
+import Loading from "../Loading/Loading";
 
 function User() {
 	const auth = useAuth();
@@ -29,7 +30,9 @@ function User() {
 			</div>
 
 			<div className="content">
-				<Outlet />
+				<Suspense fallback={<Loading />}>
+					<Outlet />
+				</Suspense>
 			</div>
 		</div>
 	);
