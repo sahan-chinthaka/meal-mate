@@ -1,17 +1,18 @@
-import React, { lazy } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SignUp from "./components/SignUp/SignUp";
-import "bootstrap/dist/css/bootstrap.min.css";
-import UserProfile from "./components/User/Profile/Profile";
 import { AuthProvider } from "./Context/AuthContext";
+import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
-import UserHome from "./components/User/Home/Home";
-import Shop from "./components/User/Shop/Shop";
-import User from "./components/User/User";
-import Owner from "./components/Owner/Owner";
-import Overview from "./components/Owner/Overview/Overview";
-import Foods from "./components/Owner/Foods/Foods";
+
+const User = React.lazy(() => import("./components/User/User"));
+const UserHome = React.lazy(() => import("./components/User/Home/Home"));
+const UserProfile = React.lazy(() => import("./components/User/Profile/Profile"));
+const Shop = React.lazy(() => import("./components/User/Shop/Shop"));
+const Owner = React.lazy(() => import("./components/Owner/Owner"));
+const Overview = React.lazy(() => import("./components/Owner/Overview/Overview"));
+const Foods = React.lazy(() => import("./components/Owner/Foods/Foods"));
 
 const router = createBrowserRouter([
 	{
