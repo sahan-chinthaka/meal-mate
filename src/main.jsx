@@ -10,6 +10,7 @@ const User = React.lazy(() => import("./components/User/User"));
 const UserHome = React.lazy(() => import("./components/User/Home/Home"));
 const UserProfile = React.lazy(() => import("./components/User/Profile/Profile"));
 const Shop = React.lazy(() => import("./components/User/Shop/Shop"));
+const ShopHome = React.lazy(() => import("./components/User/Shop/ShopHome"));
 const Owner = React.lazy(() => import("./components/Owner/Owner"));
 const Overview = React.lazy(() => import("./components/Owner/Overview/Overview"));
 const Foods = React.lazy(() => import("./components/Owner/Foods/Foods"));
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
 			{
 				path: "profile",
 				element: <UserProfile />,
+			},
+			{
+				path: "shop",
+				element: <ShopHome />,
 			},
 			{
 				path: "shop/:shopID",
