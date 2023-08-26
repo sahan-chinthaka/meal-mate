@@ -20,7 +20,7 @@ function SignUp() {
 		<div className="container">
 			<div className="sign-holder">
 				<h3>Create an Account</h3>
-				<img src="/mm_logo.png" alt="" />
+				<img src="/mm_logo2.png" alt="" />
 				{view === 0 && (
 					<>
 						<div className="type-sel" onClick={() => setView(1)}>
