@@ -35,7 +35,7 @@ function SignIn() {
 		<div className="container">
 			<div className="sign-holder">
             <h3>Sign in to Meal Mate</h3>
-            <img src="/mm_logo.png" alt="" />
+            <img src="/mm_logo2.png" alt="" />
 				<form ref={form} onSubmit={submit}>
 					<div className="form-group">
 						<label htmlFor="email">Email Address</label>

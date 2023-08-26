@@ -7,6 +7,18 @@ import CashierLogo from "./assets/cashier.jpg";
 import Districts from "./assets/districts.json";
 import FoodLogo from "./assets/food.jpg";
 import "./sign_up.scss";
+import {
+	MDBBtn,
+	MDBContainer,
+	MDBCard,
+	MDBCardBody,
+	MDBInput,
+	MDBIcon,
+	MDBRow,
+	MDBCol,
+	MDBCheckbox
+  }
+  from 'mdb-react-ui-kit';
 
 function SignUp() {
 	const [view, setView] = useState(0);
@@ -20,7 +32,7 @@ function SignUp() {
 		<div className="container">
 			<div className="sign-holder">
 				<h3>Create an Account</h3>
-				<img src="/mm_logo.png" alt="" />
+				<img src="/mm_logo2.png" alt="" />
 				{view === 0 && (
 					<>
 						<div className="type-sel" onClick={() => setView(1)}>
