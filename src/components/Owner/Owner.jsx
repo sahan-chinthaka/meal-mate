@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import NavBar from "./NavBar/NavBar";
 import { useAuth } from "../../Context/AuthContext";
+import { Suspense } from "react";
 
 function Owner() {
 	const auth = useAuth();
@@ -14,7 +15,9 @@ function Owner() {
 			<NavBar />
 
 			<div className="container" style={{ background: "white", padding: "10px" }}>
-				<Outlet />
+				<Suspense fallback="">
+					<Outlet />
+				</Suspense>
 			</div>
 		</div>
 	);

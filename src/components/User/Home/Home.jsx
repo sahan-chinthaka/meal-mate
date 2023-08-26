@@ -4,6 +4,7 @@ import { FS } from "../../../firebase";
 import ShopViewCard from "../../ShopView/ShopViewCard";
 import SuggestedShpos from "../../ShopView/SuggestedShops";
 import "./Home.scss";
+import FavFoods from "../../FavFoods/FavFoods";
 
 function UserHome() {
 	const [search, setSearch] = useState(null);
@@ -64,6 +65,8 @@ function UserHome() {
 					{search.length == 0 ? "No results" : search.map((i) => <ShopViewCard key={i.id} data={i} />)}
 				</div>
 			)}
+
+			<FavFoods />
 		</div>
 	);
 }
