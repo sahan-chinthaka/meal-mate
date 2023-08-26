@@ -5,10 +5,12 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useAuth } from "../../Context/AuthContext";
 import { FS, Storage } from "../../firebase";
 import "./FoodItemView.scss";
+import { useNavigate } from "react-router-dom";
 
 function FoodItemView({ data, shopID }) {
 	const [url, setURL] = useState(null);
 	const [fav, setFav] = useState(null);
+	const navigate = useNavigate();
 	const auth = useAuth();
 
 	useEffect(() => {
@@ -21,6 +23,14 @@ function FoodItemView({ data, shopID }) {
 			setFav(f !== undefined);
 		});
 	}, []);
+
+	function buyClick() {
+		navigate("/orders/new-order", {
+			state: {
+				...data, shopID
+			},
+		});
+	}
 
 	function favClick() {
 		const d = doc(FS, "users", auth.user.uid, "favourites", data.id);
@@ -44,7 +54,9 @@ function FoodItemView({ data, shopID }) {
 			</div>
 			<div className="food-details">
 				<p>Rs. {data.price} /=</p>
-            <button className="button-28">Buy</button>
+				<button onClick={buyClick} className="button-28">
+					Buy
+				</button>
 			</div>
 		</div>
 	);
