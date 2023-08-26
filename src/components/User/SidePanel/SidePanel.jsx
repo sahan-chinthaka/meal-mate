@@ -10,7 +10,7 @@ function SidePanel() {
 			<br />
 			<h2>Meal Mate</h2>
 			<hr />
-			<img src="/mm_logo.png" alt="" />
+			<img src="/mm_logo2.png" alt="" />
 			{auth.user != null && <div style={{ textAlign: "center" }}>Welcome {auth.user.displayName}</div>}
 			<hr />
 
