@@ -1,11 +1,14 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../../Context/AuthContext";
 import { FS, Storage } from "../../../firebase";
 import AboutTab from "./AboutTab";
-import "./shop.scss";
 import Reviews from "./Reviews";
+import "./shop.scss";
+import FoodItemView from "../../FoodItemView/FoodItemView";
 
 function Shop() {
 	const { shopID } = useParams();
@@ -68,27 +71,6 @@ function FoodView({ foodList, shopID }) {
 			{foodList.map((i) => (
 				<FoodItemView key={i.id} data={i} shopID={shopID} />
 			))}
-		</div>
-	);
-}
-
-function FoodItemView({ data, shopID }) {
-	const [url, setURL] = useState(null);
-	useEffect(() => {
-		const r = ref(Storage, "foods/" + shopID + "/" + data.id);
-		getDownloadURL(r).then(setURL);
-	}, []);
-	return (
-		<div className="food-item-view">
-			<div className="food-image" style={{ backgroundImage: `url("${url}")` }}>
-				<div className="grad">
-					<h3 align="center">{data.name}</h3>
-               <p>{data.description}</p>
-				</div>
-			</div>
-			<div className="food-details">
-				<p>Rs. {data.price} /=</p>
-			</div>
 		</div>
 	);
 }

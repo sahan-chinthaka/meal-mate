@@ -1,0 +1,24 @@
+.food-item-view {
+   width: 250px;
+   margin: 10px;
+   box-sizing: content-box;
+   overflow: hidden;
+   border-radius: 10px;
+   background: #ffc107;
+
+   .food-image {
+      background-position: center;
+      background-size: cover;
+
+      .grad {
+         height: 150px;
+         padding: 10px;
+         color: white;
+         background: linear-gradient(to bottom, black, transparent);
+      }
+   }
+
+   .food-details {
+      padding: 10px;
+   }
+}
