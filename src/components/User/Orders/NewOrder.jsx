@@ -35,7 +35,7 @@ function NewOrder() {
 			total,
 			created: serverTimestamp(),
 			state: "ordered",
-		}).then((dref) => navigate("/orders/" + dref.id));
+		}).then(() => navigate("/orders"));
 	}
 
 	return (
