@@ -1,46 +1,76 @@
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
+import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../Context/AuthContext";
-import { addDoc, collection, getDocs } from "firebase/firestore";
 import { FS, Storage } from "../../../firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import "./Foods.scss";
 
 function Foods() {
 	const auth = useAuth();
 	const [foodList, setFoodList] = useState([]);
 
 	useEffect(() => {
+		updateFoods();
+	}, []);
+
+	function updateFoods() {
 		const c = collection(FS, "shops", auth.user.uid, "foods");
 		getDocs(c).then((snap) => {
 			setFoodList(snap.docs.map((i) => ({ ...i.data(), id: i.id })));
 		});
-	}, []);
+	}
+
+	function deleteItem(foodID) {
+		const d = doc(FS, "shops", auth.user.uid, "foods", foodID);
+		const r = ref(Storage, "foods/" + auth.user.uid + "/" + foodID);
+		deleteObject(r);
+		deleteDoc(d).then(updateFoods);
+	}
+
 	return (
-		<div className="container">
+		<div className="container owner-foods">
 			<NewFood />
-			<h2>List</h2>
 
 			{foodList.map((i) => (
-				<FoodView key={i.id} data={i} />
+				<FoodView deleteItem={deleteItem} key={i.id} data={i} />
 			))}
 		</div>
 	);
 }
 
-function FoodView({ data }) {
+function FoodView({ data, deleteItem }) {
 	const auth = useAuth();
 	const [img, setImg] = useState(null);
+	const [dis, setDis] = useState(false);
 
 	useEffect(() => {
 		const r = ref(Storage, "foods/" + auth.user.uid + "/" + data.id);
 		getDownloadURL(r).then(setImg);
 	}, []);
+
+	function makeAvailable() {
+		const d = doc(FS, "shops", auth.user.uid, "foods", data.id);
+		setDis(true);
+		data.available = data.available === false ? true : false;
+		updateDoc(d, {
+			available: data.available,
+		}).then((_) => setDis(false));
+	}
+
 	return (
-		<div>
-			<div>{img && <img width={50} src={img} alt="" />}</div>
+		<div className="owner-food-item">
+			<div>{img && <img width={100} src={img} alt="" />}</div>
 			<div>
 				<b>{data.name}</b>
 				<br />
 				{data.description}
+				<br />
+				<button disabled={dis} onClick={(_) => deleteItem(data.id)} className="btn btn-danger me-2">
+					Delete
+				</button>
+				<button disabled={dis} onClick={makeAvailable} className="btn btn-info">
+					{data.available === false ? "Set as Available" : "Set as not Available"}
+				</button>
 			</div>
 		</div>
 	);
@@ -49,22 +79,25 @@ function FoodView({ data }) {
 function NewFood() {
 	const form = useRef(null);
 	const auth = useAuth();
+	const [dis, setDis] = useState(false);
 
 	function add() {
 		const name = form.current[0].value;
 		const desc = form.current[1].value;
 		const price = form.current[2].value;
 		const files = form.current[3].files;
+		setDis(true);
 
 		const c = collection(FS, "shops", auth.user.uid, "foods");
 		addDoc(c, {
 			name: name,
 			description: desc,
 			price: price,
+			available: true,
 		}).then((doc) => {
 			if (files.length > 0) {
 				const r = ref(Storage, "foods/" + auth.user.uid + "/" + doc.id);
-				uploadBytes(r, files[0]);
+				uploadBytes(r, files[0]).then((_) => setDis(false));
 			}
 		});
 	}
@@ -127,7 +160,7 @@ function NewFood() {
 					</div>
 				</div>
 
-				<button type="button" onClick={add} className="btn btn-success">
+				<button disabled={dis} type="button" onClick={add} className="btn btn-success">
 					Add
 				</button>
 			</form>

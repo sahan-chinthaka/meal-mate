@@ -20,7 +20,10 @@ function SidePanel() {
 						<NavLink to="/">Home</NavLink>
 					</li>
 					<li>
-						<NavLink to="/shop">Shop</NavLink>
+						<NavLink to="/shop">Shops</NavLink>
+					</li>
+					<li>
+						<NavLink to="/orders">Orders</NavLink>
 					</li>
 					<li>
 						<NavLink to="/profile">Profile</NavLink>
