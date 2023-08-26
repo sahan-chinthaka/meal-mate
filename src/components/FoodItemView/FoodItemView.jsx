@@ -27,7 +27,8 @@ function FoodItemView({ data, shopID }) {
 	function buyClick() {
 		navigate("/orders/new-order", {
 			state: {
-				...data, shopID
+				...data,
+				shopID,
 			},
 		});
 	}
@@ -54,9 +55,13 @@ function FoodItemView({ data, shopID }) {
 			</div>
 			<div className="food-details">
 				<p>Rs. {data.price} /=</p>
-				<button onClick={buyClick} className="button-28">
-					Buy
-				</button>
+				{data.available ? (
+					<button onClick={buyClick} className="button-28">
+						Buy
+					</button>
+				) : (
+					<span className="ms-auto">Not available</span>
+				)}
 			</div>
 		</div>
 	);
