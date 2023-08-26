@@ -44,6 +44,7 @@ function FoodItemView({ data, shopID }) {
 			</div>
 			<div className="food-details">
 				<p>Rs. {data.price} /=</p>
+            <button className="button-28">Buy</button>
 			</div>
 		</div>
 	);
