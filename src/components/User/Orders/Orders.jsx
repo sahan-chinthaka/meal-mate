@@ -41,7 +41,7 @@ function ItemView({ data }) {
 	}, []);
 
 	return (
-		<div onClick={() => navigate("/orders/" + data.id)} className="order">
+		<div className="order">
 			<img src={img} alt="" width={100} />
 			<div>
 				<h2>{food.name}</h2>

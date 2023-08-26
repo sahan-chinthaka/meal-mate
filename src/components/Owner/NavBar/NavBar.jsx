@@ -11,6 +11,9 @@ function NavBar() {
 				<li>
 					<NavLink to="/owner/foods">Foods</NavLink>
 				</li>
+				<li>
+					<NavLink to="/owner/orders">Orders</NavLink>
+				</li>
 			</ul>
 		</nav>
 	);

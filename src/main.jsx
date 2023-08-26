@@ -16,6 +16,7 @@ const Overview = React.lazy(() => import("./components/Owner/Overview/Overview")
 const Foods = React.lazy(() => import("./components/Owner/Foods/Foods"));
 const Orders = React.lazy(() => import("./components/User/Orders/Orders"));
 const NewOrder = React.lazy(() => import("./components/User/Orders/NewOrder"));
+const OwnerOrders = React.lazy(() => import("./components/Owner/Orders/OwnerOrders"));
 
 const router = createBrowserRouter([
 	{
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
 				path: "foods",
 				element: <Foods />,
 			},
+         {
+            path: "orders",
+            element: <OwnerOrders />
+         }
 		],
 	},
 ]);

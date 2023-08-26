@@ -34,7 +34,7 @@ function NewOrder() {
 			quantity: q,
 			total,
 			created: serverTimestamp(),
-			state: "ordered",
+			state: "Pending",
 		}).then(() => navigate("/orders"));
 	}
 
