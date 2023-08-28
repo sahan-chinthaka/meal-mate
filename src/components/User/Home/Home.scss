@@ -21,17 +21,20 @@
     }
 
     .homepage{
-        .title {
-                color: white;
+        .hpb{
+            .title {
+                    color: white;
+                    margin-left: 70px;
+                    margin-top: 200px; /* You can adjust this value as needed */
+                /* Adjust the value as needed */
+            }
+            .body{
+                color: aliceblue;
                 margin-left: 70px;
-                margin-top: 200px; /* You can adjust this value as needed */
-            /* Adjust the value as needed */
-        }
-        .body{
-            color: aliceblue;
-            margin-left: 70px;
-            font-size: 20px;
-        }
+                font-size: 20px;
+            }
+         }
+        
     }
     
     .rounded-button {
