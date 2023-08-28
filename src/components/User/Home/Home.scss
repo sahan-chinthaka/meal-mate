@@ -19,3 +19,34 @@
      /* First row for search container, second row for rest of the content */
     margin-top: 27px;
     }
+
+    .homepage{
+        .title {
+                color: white;
+                margin-left: 70px;
+                margin-top: 200px; /* You can adjust this value as needed */
+            /* Adjust the value as needed */
+        }
+        .body{
+            color: aliceblue;
+            margin-left: 70px;
+            font-size: 20px;
+        }
+    }
+    
+    .rounded-button {
+        background-color: rgb(73, 73, 73);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-left: 70px;
+        transition: background-color 0.3s ease;
+      }
+      
+      .rounded-button:hover {
+        background-color: #c8a30f; /* Change background color on hover */
+      }

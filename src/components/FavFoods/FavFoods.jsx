@@ -23,19 +23,13 @@ function FavFoods() {
 
 	return (
 		<div className="FavFoods">
-			<h1 className="title">Meal Mate</h1>
+			
 
 			{foodList.map((i) => (
 				<FoodItemView key={i.id} data={i} shopID={i.shopID} />
 			))}
 
-			<div>
-				<h3 className="body">
-					Discover a world of local flavors at Meal Mate
-					Connect with nearby restaurants, explore their menus
-					and order your favorite meals online.
-				</h3>
-			</div>
+			
 		</div>
 
 

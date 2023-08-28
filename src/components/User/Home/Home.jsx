@@ -74,7 +74,17 @@ function UserHome() {
 					{search.length == 0 ? "No results" : search.map((i) => <ShopViewCard key={i.id} data={i} />)}
 				</div>
 			)}
-
+			<div className="homepage">
+				<h1 className="title">Meal Mate</h1>
+					<div>
+						<h3 className="body">
+							Discover a world of local flavors at Meal Mate
+							Connect with nearby restaurants, explore their menus
+							and order your favorite meals online.
+						</h3>
+					</div>
+					<button className="rounded-button">Shop Now</button>
+			</div>
 			<FavFoods />
 		</div>
 	);
