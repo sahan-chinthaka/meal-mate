@@ -57,8 +57,6 @@ function UserHome() {
 			backgroundRepeat: "no-repeat",
 			backgroundSize: "cover",
 			minHeight: "100vh",
-			width: "100vw",
-			
 		}}>
 			<div style={{ display: "flex", justifyContent:"center"}}>
 			<div className="search-container">
