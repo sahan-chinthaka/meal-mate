@@ -6,6 +6,8 @@ import SuggestedShpos from "../../ShopView/SuggestedShops";
 import "./Home.scss";
 import FavFoods from "../../FavFoods/FavFoods";
 
+
+
 function UserHome() {
 	const [search, setSearch] = useState(null);
 	const input = useRef(null);
@@ -50,12 +52,21 @@ function UserHome() {
 	}
 
 	return (
-		<div className="container">
-			<div style={{ display: "flex" }}>
+		<div style={{ 
+			backgroundImage: "url('/mm_back2.png')",
+			backgroundRepeat: "no-repeat",
+			backgroundSize: "cover",
+			minHeight: "100vh",
+			width: "100vw",
+			
+		}}>
+			<div style={{ display: "flex", justifyContent:"center"}}>
+			<div className="search-container">
 				<input ref={input} type="text" placeholder="Search here" className="form-control" name="" id="" onKeyUp={keyUp} />
 				<button disabled={dis} className="btn btn-warning mx-1" onClick={() => searchEvent(input.current.value)}>
 					Search
 				</button>
+				</div>
 			</div>
 			{search != null && (
 				<div>

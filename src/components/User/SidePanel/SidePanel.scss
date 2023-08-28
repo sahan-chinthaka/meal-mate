@@ -1,7 +1,7 @@
 .side-panel {
 	overflow-x: hidden;
 	z-index: 2;
-
+	color: aliceblue;
 	button {
 		display: none;
 	}
@@ -10,7 +10,7 @@
 		text-align: center;
 	}
 	img {
-		width: 80px;
+		width: 200px;
 		margin: auto;
 		display: block;
 	}
@@ -22,7 +22,7 @@
 
 		a {
 			text-decoration: none;
-			color: black;
+			color: rgb(255, 255, 255);
 			display: inline-block;
 			padding: 10px;
 			width: 100%;

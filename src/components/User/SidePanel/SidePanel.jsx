@@ -7,11 +7,11 @@ function SidePanel() {
 
 	return (
 		<div className="side-panel">
-			<br />
-			<h2>Meal Mate</h2>
-			<hr />
+			
+			
+			
 			<img src="/mm_logo2.png" alt="" />
-			{auth.user != null && <div style={{ textAlign: "center" }}>Welcome {auth.user.displayName}</div>}
+			{auth.user != null && <div style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold" }}>Welcome {auth.user.displayName}</div>}
 			<hr />
 
 			<div>

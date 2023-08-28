@@ -33,29 +33,51 @@ function SignIn() {
 	}
 	return (
 		<div className="container">
-			<div className="sign-holder">
-            <h3>Sign in to Meal Mate</h3>
-            <img src="/mm_logo2.png" alt="" />
-				<form ref={form} onSubmit={submit}>
-					<div className="form-group">
-						<label htmlFor="email">Email Address</label>
-						<input type="email" name="email" id="email" required placeholder="Email" className="form-control" />
-					</div>
-					<div className="form-group">
-						<label htmlFor="pw">Password</label>
-						<input type="password" name="pw" id="pw" required className="form-control" placeholder="Password" />
-					</div>
-					{err != null && <div className="alert alert-danger">{err}</div>}
-					<div className="form-group">
-						<button disabled={dis} type="submit" className="btn btn-primary">
-							Sign In
-						</button>
-					</div>
-					Don't have an account ? &nbsp;
-					<NavLink to="/sign_up">Create an account</NavLink>
-				</form>
-			</div>
-		</div>
+      <div className="two-sided-design">
+        <div className="image-side">
+          <img src="/mm_logo2.png" alt="Meal Mate Logo" />
+        </div>
+        <div className="form-side">
+          <h3>Sign in to Meal Mate</h3>
+          <form ref={form} onSubmit={submit}>
+            <div className="form-group">
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                placeholder="Email"
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="pw">Password</label>
+              <input
+                type="password"
+                name="pw"
+                id="pw"
+                required
+                className="form-control"
+                placeholder="Password"
+              />
+            </div>
+            {err != null && <div className="alert alert-danger">{err}</div>}
+            <div className="form-group">
+              <button
+                disabled={dis}
+                type="submit"
+                className="btn btn-primary"
+              >
+                Sign In
+              </button>
+            </div>
+            Don't have an account? &nbsp;
+            <NavLink to="/sign_up">Create an account</NavLink>
+          </form>
+        </div>
+      </div>
+    </div>
 	);
 }
 

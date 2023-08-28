@@ -1,6 +1,7 @@
 .main {
 	display: flex;
-	background: #ffc107;
+	background-color: #171717;
+	
 	height: 100vh;
 	overflow: auto;
 }
@@ -10,7 +11,7 @@
 	width: 200px;
    min-width: 200px;
 	transition: 0.4s all;
-	background-color: #ffc107;
+	background-color: #171717;
 }
 
 .content {
@@ -20,7 +21,7 @@
 	background: white;
 	margin: 10px;
 	margin-left: 0;
-	padding: 15px;
+	// padding: 15px;
 	border-radius: 20px;
 	transition: 0.4s;
 }
@@ -48,7 +49,7 @@
 		position: absolute;
 		left: 200px;
 		top: 50vh;
-		background: #ffc107;
+		background: #515151;
 		padding: 10px;
 		font-size: 1.5rem;
 		border-radius: 0 100% 100% 0;

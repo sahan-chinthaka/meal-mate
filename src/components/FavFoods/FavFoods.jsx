@@ -22,7 +22,7 @@ function FavFoods() {
 
 	return (
 		<div>
-			<h1>Favourite Foods</h1>
+			<h1 className="title">Favourite Foods</h1>
 
 			{foodList.map((i) => (
 				<FoodItemView key={i.id} data={i} shopID={i.shopID} />
